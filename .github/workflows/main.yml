@@ -1,1 +1,44 @@
 
+name: Build Caddy with Sablier and Cloudflare
+
+on:
+    workflow_dispatch:
+    schedule:
+      - cron: '0 3 * * 0' # runs daily at 03:00 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  docker:
+    # runs-on: self-hosted
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - 
+        name: Extract metadata for the Docker image
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+           images: padishar24/caddy
+    
+      -
+        name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          #platforms: linux/amd64,linux/arm
+          platforms: linux/amd64,linux/arm64
+          tags: padishar24/caddy:latest
+          labels: ${{ steps.meta.outputs.labels }}
