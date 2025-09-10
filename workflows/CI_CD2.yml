@@ -1,4 +1,4 @@
-name: Build NodeRed with ffmpeg
+name: Build Caddy with Sablier and Cloudflare
 
 on:
     workflow_dispatch:
