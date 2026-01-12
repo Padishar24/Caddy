@@ -2,9 +2,8 @@
 name: Build Caddy with Sablier and Cloudflare
 
 on:
-    workflow_dispatch:
-    schedule:
-      - cron: '0 3 * * 0' # runs daily at 03:00 UTC
+  release:
+    types: [published]
 
 permissions:
   contents: write
