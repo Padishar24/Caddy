@@ -1,9 +1,14 @@
 
 name: Build Caddy with Sablier and Cloudflare
 
+
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "Dockerfile"
+      - "go.mod"
 
 permissions:
   contents: write
