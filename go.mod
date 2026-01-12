@@ -1,8 +1,3 @@
-
 module example.com/caddy-cloudflare
 
-go 1.21
-
-require (
-    github.com/caddy-dns/cloudflare v0.2.1
-)
+go 1.23.0
