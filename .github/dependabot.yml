@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "/"            # Pfad zur Dockerfile
     schedule:
-      interval: "daily"       # oder "weekly"
+      interval: "weekly"       # oder "weekly"
     open-pull-requests-limit: 5
     allow:
       - dependency-type: "all"
